@@ -285,7 +285,6 @@ ClaimFlow AI follows a controlled claim lifecycle that manages an expense from c
 | 🧠 AI Model | **GPT-OSS-120B** | Converts unstructured receipt text into structured claim data |
 | 🔐 Authentication | **JWT** | Secure user authentication and session authorization |
 | 🔑 Password Security | **bcrypt** | Password hashing |
-| 🧪 API Testing | **Postman** | API testing and validation |
 | 📚 API Documentation | **FastAPI Swagger / OpenAPI** | Interactive API documentation |
 | 🔧 Version Control | **Git & GitHub** | Source control and project hosting |
 
