@@ -595,7 +595,7 @@ cd ClaimFlow-AI-Intelligent-Expense-Claims-Management-Platform
 
 ### 2. 🐍 Backend Setup:
 
-Create and activate a Python virtual environment:
+Create and activate a Python virtual environment from the project root.
 
 Windows PowerShell:
 ```
@@ -605,7 +605,7 @@ python -m venv venv
 
 Install the backend dependencies:
 ```
-pip install -r requirements.txt
+pip install -r backend/requirements.txt
 ```
 
 ### 3. 🗄️ Database Setup:
@@ -615,7 +615,12 @@ Create a PostgreSQL database named:
 expense_claims
  ```
 
-Update the database connection in ```backend/.env```:
+Create the backend environment file:
+```
+backend/.env
+```
+
+Add the required configuration:
 ```
 DATABASE_URL=postgresql+psycopg2://postgres:YOUR_PASSWORD@localhost:5433/expense_claims
 GROQ_API_KEY=your_groq_api_key
@@ -626,36 +631,27 @@ SECRET_KEY=your_secure_secret_key
 
 ### 4. 🌱 Seed Demo Data:
 
-From the project root with the virtual environment activated:
+Navigate to the backend directory:
+```
+cd backend
+```
+
+With the virtual environment activated, run:
 
 ``` 
 python -m app.database.seed
  ```
-
-If running the command from inside the backend directory:
-
-``` 
-python -m app.database.seed
-```
 
 The seed script creates the demo users and supporting data used to demonstrate the application.
 
 
 ### 5. 🚀 Start the Backend:
 
-Navigate to the backend directory:
-
-```
-cd backend
-```
-
-Start the FastAPI server:
-
+From the `backend` directory, start the FastAPI server:
 
 ```
 uvicorn app.main:app --reload
 ```
-
 The API will be available at:
 
 ```
@@ -681,7 +677,7 @@ Install the frontend dependencies:
 ```
 npm install
 ```
-Start the development server:
+Start the Vite development server:
 
 ```
 npm run dev
@@ -696,7 +692,7 @@ http://localhost:5173
 
 ### 7. 🔐 Login:
 
-Use one of the available demo accounts from the Demo Accounts section to access the application.
+Use one of the available demo accounts from the **Demo Accounts** section to access the application.
 
 ```
 Employee → Employee Dashboard
@@ -713,6 +709,88 @@ Ctrl + C
 ```
 The backend and frontend run independently, so both development servers should remain running while using the application locally.
 
+
+## 🌐 Live Demo & Deployment:
+
+ClaimFlow AI is deployed using **Render** with separate services for the frontend, backend API, and PostgreSQL database.
+
+### 🚀 Live Application:
+
+**Frontend:**
+
+https://claimflow-frontend.onrender.com
+
+The frontend provides the complete role-based application interface for Employees, Managers, and Finance users.
+
+---
+
+### ⚙️ Backend API:
+
+https://claimflow-backend.onrender.com
+
+The backend is powered by **FastAPI** and provides the REST API used by the frontend.
+
+---
+
+### 📚 Interactive API Documentation:
+
+https://claimflow-backend.onrender.com/docs
+
+FastAPI Swagger UI provides interactive documentation for the available API endpoints.
+
+---
+
+### ❤️ Backend Health Check:
+
+https://claimflow-backend.onrender.com/health
+
+The health endpoint verifies that the backend is running and connected to the PostgreSQL database.
+
+Expected response:
+
+```json
+{
+  "status": "healthy",
+  "database": "connected"
+}
+```
+
+### ☁️ Deployment Architecture:
+
+                    👤 Users
+                       │
+                       ▼
+        ┌─────────────────────────────┐
+        │     React + TypeScript      │
+        │        Vite Frontend        │
+        │           Render            │
+        └──────────────┬──────────────┘
+                       │
+                       │ REST API / JSON
+                       ▼
+        ┌─────────────────────────────┐
+        │       Python + FastAPI      │
+        │        Backend API          │
+        │           Render            │
+        └──────────┬─────────┬────────┘
+                   │         │
+                   │         │
+                   ▼         ▼
+        ┌──────────────┐   ┌──────────────┐
+        │ PostgreSQL   │   │   Groq API   │
+        │    Render    │   │ GPT-OSS-120B │
+        └──────────────┘   └──────────────┘
+
+### 🔧 Deployment Configuration:
+
+| Component | Platform           | Purpose                                    |
+| --------- | ------------------ | ------------------------------------------ |
+| Frontend  | Render Static Site | React + TypeScript + Vite application      |
+| Backend   | Render Web Service | FastAPI REST API                           |
+| Database  | Render PostgreSQL  | Persistent application data                |
+| AI        | Groq API           | Receipt text extraction using GPT-OSS-120B |
+
+> The deployed application uses environment variables for database credentials, the Groq API key, and JWT secret management. No secrets are committed to the repository.
 
 
 ## 🔐 Environment Variables
@@ -1068,106 +1146,139 @@ Rejected    Approved
 ```
 
 
-
 ## ⚠️ Known Limitations:
 
 The current version focuses on delivering the core expense-claim workflow within the assignment scope. The following areas could be improved in a production-ready version.
 
-### Receipt Image Upload:
+### 🧾 Receipt Image Upload:
 
 - The current AI extraction flow accepts pasted receipt text.
 - Direct receipt photo/screenshot upload and OCR are not implemented.
-- Adding image upload with OCR would make the receipt capture experience more convenient.
+- Adding image upload with OCR would make receipt capture more convenient.
 
-### Payment Processing:
+### 💳 Payment Processing:
 
 - Finance payment is simulated within the application.
 - No real banking, payroll, or payment-provider integration is implemented.
 
-### Automated Testing:
+### 🧪 Automated Testing:
 
 - The project was validated through functional workflow testing.
 - A comprehensive automated test suite with unit, integration, and end-to-end tests is not currently included.
 
-### Production Security Hardening:
+### 🔐 Production Security Hardening:
 
 The application includes JWT authentication, bcrypt password hashing, role-based authorization, and environment-based secret management.
 
-For production deployment, additional measures would be appropriate, including:
+For a production-scale deployment, additional measures would be appropriate, including:
 
-- HTTPS enforcement
+- HTTPS enforcement and security headers
 - Rate limiting
 - Token/session hardening
 - Secret rotation
 - More extensive security monitoring
 - Production-grade logging and alerting
 
-### AI Extraction Accuracy:
+### 🤖 AI Extraction Accuracy:
 
 - AI extraction depends on the quality and clarity of the receipt text.
 - Poorly written or incomplete receipts may result in incorrect or incomplete extraction.
 - The application therefore allows users to review and correct extracted information before submission.
 
-### Duplicate Detection:
+### 🔍 Duplicate Detection:
 
 - Duplicate detection is similarity-based and therefore cannot guarantee that every duplicate expense will be identified.
 - Very different descriptions of the same receipt may produce a lower similarity score.
 - The current approach is designed to flag suspicious duplicates for review rather than provide a mathematically perfect duplicate guarantee.
 
-### Deployment:
+### ☁️ Deployment:
 
-- The application is currently designed primarily around local development and demonstration.
-- A production deployment would require additional infrastructure configuration, managed database setup, environment configuration, monitoring, and security hardening.
+- The application is currently deployed on Render for demonstration and evaluation.
+- The deployment uses managed PostgreSQL and separate frontend/backend services.
+- A production-scale deployment would require additional infrastructure configuration, monitoring, scaling, backup, disaster-recovery, and security controls.
+- Free-tier hosting may also have resource and availability limitations compared with production infrastructure.
+
 
 
 ## 🚀 Future Improvements:
 
-Beyond the immediate one-week improvements, the platform could be extended in several areas:
+### What I'd Build With One More Week:
 
-### AI & Automation:
+If I had another week to continue developing ClaimFlow AI, I would prioritize the following improvements:
 
-- Support multilingual and more complex receipt formats.
-- Improve AI extraction accuracy through evaluation datasets and feedback from corrected claims.
-- Add confidence-based review workflows for low-confidence AI extractions.
-- Introduce smarter duplicate detection using semantic similarity and historical expense patterns.
-- Automatically identify unusual spending patterns or potentially fraudulent claims.
+### 1. 🧾 Receipt Image & OCR Support
 
-### Receipt Processing:
+- Allow users to upload receipt photos and screenshots.
+- Add OCR to extract text automatically from images.
+- Preserve the original receipt image alongside the claim for auditing.
+- Support PDF receipt uploads.
 
-- Support receipt image and PDF uploads.
-- Add OCR for extracting text from uploaded receipts.
-- Preserve the original receipt alongside the structured claim for auditing.
-- Support batch receipt processing.
+### 2. 🤖 Improve AI Extraction
 
-### Workflow & Collaboration:
+- Build an evaluation dataset containing different receipt formats.
+- Measure extraction accuracy across merchants and receipt layouts.
+- Add confidence-based review workflows for low-confidence extractions.
+- Improve handling of multilingual receipts and unusual formats.
 
-- Add configurable multi-level approval workflows.
-- Support different approval rules based on department, amount, or expense category.
-- Add email or in-app notifications for claim status changes.
-- Allow Finance users to configure monthly budgets and spending thresholds.
+### 3. 🔍 Smarter Duplicate Detection
 
-### Finance & Reporting:
+- Introduce semantic similarity alongside the existing text-based approach.
+- Compare historical expense patterns.
+- Improve detection of receipts with significantly different wording.
+- Provide clearer explanations for why a claim was flagged as a potential duplicate.
 
-- Add richer financial analytics and historical spending trends.
-- Provide department and category-level reporting.
-- Add CSV/PDF report exports.
-- Add configurable budget alerts.
-- Integrate with accounting or payroll systems.
+### 4. 🔔 Workflow Notifications
 
-### Platform & Infrastructure:
+- Add email or in-app notifications for:
+  - Claim submission
+  - Approval
+  - Rejection
+  - Payment
+- Provide clearer claim-status history to employees and managers.
 
-- Add comprehensive automated testing and CI/CD.
-- Deploy using managed cloud infrastructure.
-- Add centralized logging, monitoring, and alerting.
-- Improve scalability with background processing for AI and OCR workloads.
-- Introduce stronger production security controls and secret management.
+### 5. 💰 Finance & Reporting
 
-### User Experience:
+- Add historical spending trends.
+- Add department-level and category-level reporting.
+- Support CSV/PDF report exports.
+- Add configurable budget thresholds and alerts.
+- Provide richer Finance analytics.
 
-- Improve responsive and mobile-friendly interfaces.
-- Add advanced filtering, sorting, and pagination for claims.
-- Provide clearer explanations for duplicate and AI-confidence warnings.
-- Improve accessibility across all dashboards.
+### 6. 🧪 Automated Testing & CI/CD
+
+- Add unit tests for core business logic.
+- Add API integration tests.
+- Add frontend and end-to-end tests.
+- Configure CI/CD to automatically run validation on every pull request.
+
+### 7. 🔐 Production Hardening
+
+- Add rate limiting and stronger session controls.
+- Introduce centralized logging and monitoring.
+- Add automated database backups and recovery procedures.
+- Improve secret rotation and production security controls.
+- Add stronger observability and alerting.
+
+### 8. 📱 User Experience
+
+- Improve mobile responsiveness.
+- Add advanced filtering, sorting, and pagination.
+- Improve accessibility.
+- Provide clearer explanations for AI confidence and duplicate warnings.
+
+---
+
+## 🔮 Longer-Term Future Improvements:
+
+Beyond the one-week development plan, the platform could eventually be extended with:
+
+- Configurable multi-level approval workflows.
+- Department- and amount-based approval rules.
+- Accounting or payroll integrations.
+- Batch receipt processing.
+- Automated anomaly and fraud detection.
+- More advanced financial forecasting and spending analysis.
+- Scalable background processing for AI and OCR workloads.
 
 
 ## 👤 Author:
@@ -1176,5 +1287,5 @@ Beyond the immediate one-week improvements, the platform could be extended in se
 
 B.Tech — Artificial Intelligence & Data Science
 
-- GitHub: https://github.com/msns-1927
-- LinkedIn: https://www.linkedin.com/in/siva-narayana-muppidi-413259230/
+- 💻 GitHub: https://github.com/msns-1927
+- 🔗 LinkedIn: https://www.linkedin.com/in/siva-narayana-muppidi-413259230/
