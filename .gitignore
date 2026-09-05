@@ -1,0 +1,153 @@
+# =========================================================
+# Expense Claims - Git Ignore
+# =========================================================
+
+# ---------------------------------------------------------
+# Environment variables / secrets
+# ---------------------------------------------------------
+.env
+.env.*
+!.env.example
+
+# ---------------------------------------------------------
+# Python
+# ---------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+
+*.so
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Python packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Test / coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# ---------------------------------------------------------
+# FastAPI / Uvicorn / application logs
+# ---------------------------------------------------------
+*.log
+logs/
+
+# ---------------------------------------------------------
+# Database / local development files
+# ---------------------------------------------------------
+*.sqlite
+*.sqlite3
+*.db
+
+# PostgreSQL local data
+# Never commit a local PostgreSQL cluster/data directory
+expense_claims_pgdata/
+C:\expense_claims_pgdata/
+
+# ---------------------------------------------------------
+# Node.js / React / Vite
+# ---------------------------------------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Vite build output
+dist/
+.vite/
+
+# ---------------------------------------------------------
+# Frontend environment variables
+# ---------------------------------------------------------
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
+
+# ---------------------------------------------------------
+# IDE / editors
+# ---------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# VS Code local history
+.history/
+
+# ---------------------------------------------------------
+# Operating system files
+# ---------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+Desktop.ini
+
+# ---------------------------------------------------------
+# Temporary files
+# ---------------------------------------------------------
+*.tmp
+*.temp
+*.bak
+*.backup
+*.old
+*.orig
+
+# ---------------------------------------------------------
+# Generated files
+# ---------------------------------------------------------
+*.generated.*
+coverage/
+.cache/
+
+# ---------------------------------------------------------
+# Secrets / credentials
+# ---------------------------------------------------------
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+
+# ---------------------------------------------------------
+# Local uploads / generated assets
+# ---------------------------------------------------------
+uploads/
+tmp/
+temp/
+
+# ---------------------------------------------------------
+# Deployment / local tooling
+# ---------------------------------------------------------
+.vercel/
+.netlify/
+.render/
+
+# ---------------------------------------------------------
+# Miscellaneous
+# ---------------------------------------------------------
+.DS_Store
+Thumbs.db
