@@ -1067,6 +1067,21 @@ The extracted fields include:
 The AI is explicitly instructed not to invent information that is not present in the receipt text.
 
 
+### ChatGPT:
+- Used as a development assistant for:
+  - Architecture and implementation planning
+  - Backend and frontend development guidance
+  - Debugging and resolving implementation issues
+  - API and database design discussions
+  - Test-case and edge-case analysis
+  - README and documentation refinement
+  - Deployment troubleshooting
+
+### Human Review:
+- AI-generated suggestions and code were reviewed, tested, modified, and integrated manually.
+- Application behavior was validated through functional testing, including authentication, claim lifecycle, duplicate detection, role-based authorization, manager approval/rejection, finance payment, monthly limits, and deployment checks.
+
+
 
 ## 🧪 Testing & Validation:
 
