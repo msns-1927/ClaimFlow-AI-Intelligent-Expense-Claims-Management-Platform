@@ -1303,3 +1303,58 @@ B.Tech — Artificial Intelligence & Data Science
 
 - 💻 GitHub: https://github.com/msns-1927
 - 🔗 LinkedIn: https://www.linkedin.com/in/siva-narayana-muppidi-413259230/
+
+
+
+## Screenshots:
+
+### Login:
+Role-based login for Employees, Managers, and Finance users.
+
+<p align="center">
+<img width="900" alt="Screenshot 2026-09-06 125811" src="https://github.com/user-attachments/assets/135d18ab-3ff8-48d1-a6d9-334bdb61ec44" />
+</p>
+
+
+### Employee Dashboard:
+Employees can create claims manually or paste unstructured receipt text for AI-powered extraction.
+
+<p align="center">
+<img width="900" alt="Screenshot 2026-09-05 102316" src="https://github.com/user-attachments/assets/921a1974-ab26-4bde-bd0e-947dbef1334e" />
+</p>
+
+
+
+### AI Receipt Extraction
+The system converts unstructured receipt text into structured claim information that the employee can review and correct before submission.
+
+<p align="center">
+<img width="900" alt="Screenshot 2026-09-05 102330" src="https://github.com/user-attachments/assets/6d416d76-9816-43eb-8b35-fde41b6d1d21" />
+</p>
+
+
+
+### Duplicate Receipt Detection
+The system detects potential duplicate claims even when the same receipt is entered with slightly different wording.
+
+<p align="center">
+<img width="900" alt="Screenshot 2026-09-05 111835" src="https://github.com/user-attachments/assets/ac741d2d-f645-4ca9-8731-8ab57ff2d799" />
+</p>
+
+
+### Manager Dashboard
+Managers can review team claims and approve or reject them. Managers cannot approve their own claims.
+
+<p align="center">
+<img width="900" alt="Screenshot 2026-09-05 134828" src="https://github.com/user-attachments/assets/b7f05a33-5c67-4c83-8317-b7702c6312de" />
+</p>
+
+
+### Finance Dashboard
+Finance can monitor monthly spending, employee limits, categories, approved claims, and mark approved claims as paid.
+
+<p align="center">
+<img width="900" alt="Screenshot 2026-09-05 103856" src="https://github.com/user-attachments/assets/ff91051b-5bbe-4ec1-9ceb-1f88c178d17f" />
+</p>
+
+
